@@ -1,10 +1,13 @@
 import 'package:daily_expenses/controller/expense_controller.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class AddExpenseScreen extends StatelessWidget {
   AddExpenseScreen({Key? key}) : super(key: key);
   ExpenseController controller = Get.find();
+  final format = DateFormat("yyyy-MM-dd");
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,17 @@ class AddExpenseScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
+          // Padding(
+          //     padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+          //     child: DateTimeField(
+          //         format: format,
+          //         onShowPicker: (context, currentValue) {
+          //           return showDatePicker(
+          //               context: context,
+          //               initialDate: currentValue ?? DateTime.now(),
+          //               firstDate: DateTime(1990),
+          //               lastDate: DateTime(2100));
+          //         })),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
             child: TextFormField(
@@ -36,8 +50,7 @@ class AddExpenseScreen extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-              child: Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
             child: TextFormField(
               controller: controller.outcomeamountController,
@@ -47,7 +60,20 @@ class AddExpenseScreen extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-          ))
+          ),
+          FlatButton(
+            onPressed: () => controller.showDate(context),
+            child: const Text(
+              'Date',
+              style: TextStyle(
+                color: Colors.indigo,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+          )
         ],
       ),
     );

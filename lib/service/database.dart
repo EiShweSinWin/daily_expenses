@@ -69,6 +69,15 @@ class DatabaseHelper {
     return expenseModel;
   }
 
+  Future<List<ExpenseModel>> queryAllTotal() async {
+    Database db = await instance.database;
+    final data = await db.rawQuery("SELECT $columnAmount  FROM $table");
+    final List<ExpenseModel> expenseTotal =
+        data.map<ExpenseModel>((e) => ExpenseModel.fromJson(e)).toList();
+    log("ExpenseTotal");
+    return expenseTotal;
+  }
+
   Future<List<ExpenseModel>> queryAllDatabase() async {
     Database db = await instance.database;
     final data = await db.query(table);

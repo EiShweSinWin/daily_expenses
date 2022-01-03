@@ -1,6 +1,8 @@
 import 'package:daily_expenses/controller/expense_controller.dart';
+import 'package:daily_expenses/model/expense_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import 'widgets/widget_drawer.dart';
 
@@ -81,14 +83,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       // Expanded(
-                      //   child: Card(
-                      //     child: ListTile(
-                      //       leading: Text(
-                      //           'total' + controller.getAllTotal().toString(),
-                      //           style: const TextStyle(
-                      //               fontWeight: FontWeight.bold)),
-                      //     ),
-                      //   ),
+                      //   child: Text(controller.total.toString()),
                       // ),
                     ],
                   ));

@@ -11,7 +11,7 @@ class ExpenseModel {
     id = json['_id'];
     type = json['type'];
     // int? iamount = json['amount'];
-    //amount = iamount!.toDouble();
+    // amount = iamount!.toDouble();
     amount = json['amount'];
     date = json['date'];
     reason = json['reason'];
@@ -27,5 +27,7 @@ class ExpenseModel {
   }
 
   @override
-  String toString() => '$type';
+  String toString() {
+    return '$amount';
+  }
 }
