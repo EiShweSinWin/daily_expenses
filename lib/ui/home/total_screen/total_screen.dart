@@ -9,28 +9,26 @@ class TotalScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Total')),
-      // body: Column(
-      //   children: [
-      //     Center(
-      //       child: Padding(
-      //         padding:
-      //             const EdgeInsets.symmetric(vertical: .5, horizontal: 10),
-      //         child: Card(
-      //             child: ListTile(
-      //           leading: Obx(
-      //             () => Text(
-      //               controller.total.toString(),
-      //               style: const TextStyle(fontWeight: FontWeight.bold),
-      //             ),
-      //           ),
-      //         )),
-      //       ),
-      //     )
-      //   ],
-      // ));
+        appBar: AppBar(title: const Text('Total')),
+        body: Column(
+          children: [
+            Center(
+              child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: .5, horizontal: 10),
+                  child: Card(
+                    child: ListTile(
+                      leading: Text(
+                        controller.total.toString(),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  )),
+            ),
+          ],
+        ));
 
-      body: Text(controller.total.toString()),
-    );
+    // body: Text(controller.total.toString()),
+    // );
   }
 }

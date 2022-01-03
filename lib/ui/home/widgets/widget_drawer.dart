@@ -17,7 +17,7 @@ class WidgetDrawer extends StatelessWidget {
               Icons.add,
               color: Colors.indigo,
             ),
-            title: const Text("InCome"),
+            title: const Text("Add InCome"),
             onTap: () {
               Get.toNamed('/income');
             },
@@ -44,6 +44,16 @@ class WidgetDrawer extends StatelessWidget {
               controller.deleteOutcome();
             },
           ),
+          ListTile(
+            leading: Icon(
+              Icons.add,
+              color: Colors.indigo,
+            ),
+            title: const Text('Income Amount'),
+            onTap: () {
+              Get.toNamed('/addincome');
+            },
+          )
         ],
       ),
     );
