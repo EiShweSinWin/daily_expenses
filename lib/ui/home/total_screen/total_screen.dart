@@ -19,7 +19,7 @@ class TotalScreen extends StatelessWidget {
                   child: Card(
                     child: ListTile(
                       leading: Text(
-                        controller.total.toString(),
+                        controller.totalAll.toString(),
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),

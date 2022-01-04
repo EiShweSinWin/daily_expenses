@@ -83,6 +83,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       // Expanded(
+
                       //   child: Text(controller.total.toString()),
                       // ),
                     ],

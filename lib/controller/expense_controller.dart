@@ -21,10 +21,12 @@ class ExpenseController extends GetxController {
   RxList<ExpenseModel> choosedate = <ExpenseModel>[].obs;
   //RxList<ExpenseModel> total = <ExpenseModel>[].obs;
   double total = 0.0;
+  double totalAll = 0.0;
 
   @override
   onInit() {
-    getAllExpense();
+    //  getAllExpense();
+    getAllTotal();
     super.onInit();
   }
 
@@ -73,21 +75,29 @@ class ExpenseController extends GetxController {
     total = sum;
 
     log("getAllOutcome");
+    // final income = await _db.queryAllIncome();
+    // double totalIncome = income
+    //     .map((incomeAmount) => incomeAmount.amount!.toDouble())
+    //     .fold(0, (previous, amount) => previous + amount);
+    // log("totalIncome" + totalIncome.toString());
+    // totalAll = totalIncome - (total);
+    // log("getAllTotal" + totalAll.toString());
+    // return totalAll;
   }
 
   getAllTotal() async {
-    final outcome = await _db.queryAllTotal();
-
-    double sum = outcome
+    final outcome = await _db.queryAllExpense();
+    final income = await _db.queryAllIncome();
+    double totalOutcome = outcome
         .map((expense) => expense.amount!.toDouble())
         .fold(0, (previous, amount) => previous + amount);
-
-    log(sum.toString());
-    log("getAlltotal" + sum.toString());
-    total = sum;
-    log(total.toString());
-
-    return sum;
+    double totalIncome = income
+        .map((incomeAmount) => incomeAmount.amount!.toDouble())
+        .fold(0, (previous, amount) => previous + amount);
+    log("totalIncome" + totalIncome.toString());
+    totalAll = totalIncome - (totalOutcome);
+    log("getAllTotal" + totalAll.toString());
+    return totalAll;
   }
 
   getAllInCome() async {
