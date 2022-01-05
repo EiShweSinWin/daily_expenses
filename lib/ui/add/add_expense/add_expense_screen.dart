@@ -15,7 +15,9 @@ class AddExpenseScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.save),
         onPressed: () {
+          controller.getAllTotalExpense();
           controller.addExpense();
+          //controller.getAllTotalExpense();
           controller.clear();
           Get.back();
         },

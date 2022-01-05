@@ -35,7 +35,7 @@ class InComeScreen extends StatelessWidget {
               onPressed: () {
                 controller.addIncome();
                 controller.clear();
-                controller.getAllInCome();
+                controller.getAllTotalInCome();
                 Get.back();
                 //  Get.toNamed('/addincome');
               },

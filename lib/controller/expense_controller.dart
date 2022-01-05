@@ -20,28 +20,31 @@ class ExpenseController extends GetxController {
   RxList<ExpenseModel> outcomeList = <ExpenseModel>[].obs;
   RxList<ExpenseModel> choosedate = <ExpenseModel>[].obs;
   //RxList<ExpenseModel> total = <ExpenseModel>[].obs;
-  double total = 0.0;
+  double totalExpense = 0.0;
   double totalAll = 0.0;
+  double totalIncome = 0.0;
 
   @override
   onInit() {
-    //  getAllExpense();
+    getAllTotalExpense();
+    getAllTotalInCome();
     getAllTotal();
+
     super.onInit();
   }
 
   addExpense() {
     log("addOutcome");
-    // DateTime now = DateTime.now();
-    // String datetime = DateFormat("dd.MM.yyyy hh.mm a").format(now);
+    DateTime now = DateTime.now();
+    String datetime = DateFormat("dd.MM.yyyy").format(now);
     ExpenseModel expenseModel = ExpenseModel(
         type: 0,
         amount: double.parse(outcomeamountController.text),
         reason: outcomereasonController.text,
-        date: dateController.text);
+        date: datetime);
     _db.insert(expenseModel.toJson());
-    getAllExpense();
-    getAllTotal();
+    // totalExpense;
+    getAllTotalExpense();
   }
 
   showDate(context) {
@@ -59,30 +62,23 @@ class ExpenseController extends GetxController {
         amount: double.parse(incomeamountController.text),
         reason: incomereasonController.text);
     _db.insert(expenseModel.toJson());
-    getAllInCome();
+    getAllTotalInCome();
+    getAllTotal();
   }
 
-  getAllExpense() async {
+  getAllTotalExpense() async {
     final outcome = await _db.queryAllExpense();
     log(outcome.toString());
     outcomeList.value = outcome;
     await _db.queryAllDatabase();
-    double sum = outcome
+    double totalOutcome = outcome
         .map((expense) => expense.amount!.toDouble())
         .fold(0, (previous, amount) => previous + amount);
 
-    log(sum.toString());
-    total = sum;
+    log("totalExpense" + totalOutcome.toString());
+    totalExpense = totalOutcome;
 
-    log("getAllOutcome");
-    // final income = await _db.queryAllIncome();
-    // double totalIncome = income
-    //     .map((incomeAmount) => incomeAmount.amount!.toDouble())
-    //     .fold(0, (previous, amount) => previous + amount);
-    // log("totalIncome" + totalIncome.toString());
-    // totalAll = totalIncome - (total);
-    // log("getAllTotal" + totalAll.toString());
-    // return totalAll;
+    //return totalExpense;
   }
 
   getAllTotal() async {
@@ -100,9 +96,15 @@ class ExpenseController extends GetxController {
     return totalAll;
   }
 
-  getAllInCome() async {
+  getAllTotalInCome() async {
     final income = await _db.queryAllIncome();
     incomeList.value = income;
+    double tIncome = income
+        .map((incomeAmount) => incomeAmount.amount!.toDouble())
+        .fold(0, (previous, amount) => previous + amount);
+    totalIncome = tIncome;
+    log("totalIncome" + totalIncome.toString());
+    return totalIncome;
   }
 
   clear() {
@@ -112,8 +114,8 @@ class ExpenseController extends GetxController {
 
   deleteOutcome() async {
     await _db.delete();
-    getAllExpense();
-    getAllInCome();
+    getAllTotalExpense();
+    getAllTotalInCome();
     getAllTotal();
   }
 }
