@@ -44,7 +44,7 @@ class DatabaseHelper {
     await db.execute('''
           CREATE TABLE $table(
   $columnType INT
-  ,$columnAmount INT    
+  ,$columnAmount DOUBLE   
   ,$columnDate  VARCHAR(20)
   ,$columnReason TEXT
 

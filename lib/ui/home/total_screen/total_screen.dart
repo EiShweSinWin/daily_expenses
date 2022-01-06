@@ -9,7 +9,7 @@ class TotalScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Total')),
+        appBar: AppBar(title: const Text('Balance')),
         body: Column(
           children: [
             Center(

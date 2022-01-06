@@ -12,6 +12,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    String datetime = DateFormat("dd.MM.yyyy ").format(now);
+    String weekday = DateFormat("EEEE").format(now);
     return Scaffold(
         drawer: Drawer(
           child: WidgetDrawer(),
@@ -24,24 +27,64 @@ class HomeScreen extends StatelessWidget {
           child: const Icon(Icons.add),
         ),
         backgroundColor: Colors.white.withOpacity(0.9),
-        appBar: _myAppBar(context),
+        appBar: AppBar(
+          title: const Text('Expense'),
+        ),
         body: Column(
           children: [
             Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  datetime.toString(),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.indigo,
+                  ),
+                )),
+            Text(
+              weekday,
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.indigo,
+                  fontSize: 20),
+            ),
+
+            Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
-                  child: ListTile(
-                leading: const Text(
-                  "Total",
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
+                child: ListTile(
+                  leading: const Text(
+                    "delete",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.indigo),
+                  ),
+                  trailing: const Icon(
+                    Icons.delete,
+                    color: Colors.redAccent,
+                  ),
+                  onTap: () {
+                    controller.deleteOutcome();
+                  },
                 ),
-                trailing: Text(
-                  controller.totalExpense.toString(),
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              )),
+              ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                child: ListTile(
+                  leading: const Text(
+                    "Total",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.indigo),
+                  ),
+                  trailing: Text(
+                    controller.totalExpense.toString(),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ),
+            // Text(datetime.toString()),
             Expanded(
                 child: Obx(
               () => ListView.builder(
@@ -56,13 +99,34 @@ class HomeScreen extends StatelessWidget {
                                   vertical: .5, horizontal: 10),
                               child: Card(
                                 child: ListTile(
-                                  leading: Text(
-                                      controller.outcomeList[idx].reason
-                                          .toString(),
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                  title: Text(controller.outcomeList[idx].date
-                                      .toString()),
+                                  leading: Container(
+                                    width: 30,
+                                    height: 30,
+                                    padding: const EdgeInsets.all(5),
+                                    alignment: Alignment.center,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.indigo),
+                                    child: const FittedBox(
+                                        child: Icon(
+                                      Icons.arrow_downward,
+                                      color: Colors.white,
+                                    )),
+                                  ),
+
+                                  title: Column(
+                                    children: [
+                                      Text(
+                                        controller.outcomeList[idx].reason
+                                            .toString(),
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+
+                                  // title: Text(controller.outcomeList[idx].date
+                                  //     .toString()),
                                   trailing: Text(
                                     controller.outcomeList[idx].amount
                                         .toString(),
@@ -75,19 +139,19 @@ class HomeScreen extends StatelessWidget {
                           ],
                         ));
                   }),
-            ))
+            )),
           ],
         ));
   }
 
-  _myAppBar(BuildContext context) {
-    return AppBar(
-        elevation: 0.5,
-        backgroundColor: Colors.white.withOpacity(0.9),
-        iconTheme: const IconThemeData(color: Colors.indigo),
-        title: const Text(
-          'Daily Expenses',
-          style: TextStyle(color: Colors.black),
-        ));
-  }
+  // _myAppBar(BuildContext context) {
+  //   return AppBar(
+  //       elevation: 0.5,
+  //       backgroundColor: Colors.white.withOpacity(0.9),
+  //       iconTheme: const IconThemeData(color: Colors.indigo),
+  //       title: const Text(
+  //         'Daily Expenses',
+  //         style: TextStyle(color: Colors.white),
+  //       ));
+  // }
 }

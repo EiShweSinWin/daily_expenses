@@ -18,8 +18,8 @@ class AddIncomeScreen extends StatelessWidget {
                 child: ListTile(
               leading: const Text(
                 "Total",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold, color: Colors.indigo),
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
               ),
               trailing: Text(
                 controller.totalIncome.toString(),
@@ -40,13 +40,25 @@ class AddIncomeScreen extends StatelessWidget {
                                 vertical: .5, horizontal: 10),
                             child: Card(
                               child: ListTile(
-                                leading: Text(
+                                leading: Container(
+                                    width: 30,
+                                    height: 30,
+                                    padding: const EdgeInsets.all(5),
+                                    alignment: Alignment.center,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.indigo),
+                                    child: const FittedBox(
+                                      child: Icon(
+                                        Icons.arrow_upward,
+                                        color: Colors.white,
+                                      ),
+                                    )),
+                                title: Text(
                                     controller.incomeList[idx].reason
                                         .toString(),
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold)),
-                                title: Text(
-                                    controller.incomeList[idx].date.toString()),
                                 trailing: Text(
                                   controller.incomeList[idx].amount.toString(),
                                   style: const TextStyle(

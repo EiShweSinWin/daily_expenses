@@ -1,6 +1,7 @@
 import 'package:daily_expenses/controller/expense_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class WidgetDrawer extends StatelessWidget {
   WidgetDrawer({Key? key}) : super(key: key);
@@ -24,29 +25,17 @@ class WidgetDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(
-              Icons.summarize,
+              Icons.money_off_csred_rounded,
               color: Colors.indigo,
             ),
-            title: const Text("Total"),
+            title: const Text("Balance"),
             onTap: () {
               Get.toNamed('/total');
             },
           ),
           ListTile(
             leading: const Icon(
-              Icons.delete,
-              color: Colors.indigo,
-            ),
-            title: const Text(
-              'Delete',
-            ),
-            onTap: () {
-              controller.deleteOutcome();
-            },
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.add,
+              MdiIcons.alphaICircleOutline,
               color: Colors.indigo,
             ),
             title: const Text('Income Amount'),

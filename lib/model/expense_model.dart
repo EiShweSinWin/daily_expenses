@@ -12,7 +12,9 @@ class ExpenseModel {
     type = json['type'];
     // int? iamount = json['amount'];
     // amount = iamount!.toDouble();
-    amount = json['amount'];
+    String iamount = json['amount'].toString();
+    amount = double.parse(iamount);
+
     date = json['date'];
     reason = json['reason'];
   }

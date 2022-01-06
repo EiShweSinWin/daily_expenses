@@ -63,19 +63,6 @@ class AddExpenseScreen extends StatelessWidget {
               ),
             ),
           ),
-          FlatButton(
-            onPressed: () => controller.showDate(context),
-            child: const Text(
-              'Date',
-              style: TextStyle(
-                color: Colors.indigo,
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-          )
         ],
       ),
     );
